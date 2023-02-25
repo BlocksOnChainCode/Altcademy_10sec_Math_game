@@ -12,24 +12,31 @@
   <link rel="stylesheet" href="styles.css">
   <title>10 Seconds Math Game</title>
 </head>
-<body>
-  <!-- 10 Seconds Math game, vanilla no bootstrap -->
-  <header>
-    <h1>10 Seconds Math!</h1>
-  </header>
-
-  <main id="game-container">
+<body>  
+  <!-- Possible extra feature could be multiple choice buttons.... Or a way to increase difficulty of the equations instead of the time -->
+  <main id="main-container">
+    <!-- Menu and settings -->
     <div id="home-container">
-
-      <!-- Menu and settings -->
+      <h1>10 Seconds Math!</h1>
+      <div id="buttons-wrapper">
+        <button id="play-button">Play</button>
+        <button id="settings-button">Settings</button>
+      </div>
     </div>
+    <!-- Container for the game itself-->
     <div id="game-container">
-      <!-- Container for the game itself-->
+      <div id="timer">Time left: 10</div>
+      <div id="equation">
 
-      <!-- Possible extra feature could be multiple choice buttons.... Or a way to increase difficulty of the equations instead of the time -->
+      </div>
+      <div id="user-input">
+        <input type="text">
+      </div>
     </div>
-    <div id="highscore-container">
+    <div id="highScore-container">
       <!-- Here comes the high score from the toDo Api sorted from highest to lowest, user will get to put in their name to post their high score-->
+      <!-- Render highest to lowest score -->
+      <!-- Will I need 2 keys to include player name and score????? Hmmmm-->
     </div>
   </main>
 
@@ -38,5 +45,6 @@
   </footer>
 
   <script src="./main.js"></script>
+  <script src="./highscore.js"></script>
 </body>
 </html>
