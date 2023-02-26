@@ -29,14 +29,14 @@ function startTimer() {
 
 function endGame() {
   clearInterval(timerInterval);
-  $('#game-container').hide();
-  $('#highScore-container').show();
+  $('#game-container').hide(100);
+  $('#highScore-container').show(100);
 }
 
 let playBtn = $('#play-button');
 playBtn.click(() => {
-  $("#home-container").slideToggle(1000);
-  $("#game-container").fadeIn(1000);
+  $("#home-container").hide(100);
+  $("#game-container").show(100);
   startTimer();
   generateEquation();
 });
