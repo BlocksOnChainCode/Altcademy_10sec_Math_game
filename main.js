@@ -5,14 +5,25 @@
  * 
  */
 
-// hide both the game and highscore container using JQuery hide()
 let timerValue = 10;
 let timerInterval;
 const timer = $('#timer');
 
+// Hide game page and high score page
 $("#game-container").hide();
 $("#highScore-container").hide();
 
+
+// When play button is clicked
+$('#play-button').click(() => {
+  $("#home-container").hide(100);
+  $("#game-container").show(100);
+    startTimer();
+    generateEquation();
+});
+
+
+// Start timer
 function startTimer() {
   console.log('timer started')
   timerInterval = setInterval(() => {
@@ -20,35 +31,27 @@ function startTimer() {
       clearInterval(timerInterval);
       endGame();
     } else {
-      console.log(timer)
+      //console.log(timerValue)
       timerValue--;
       timer.html(`Time left: ${timerValue}s`);
     }
   }, 1000);
+  $('#user-input input').focus();
 }
-
-function endGame() {
-  clearInterval(timerInterval);
-  $('#game-container').hide(100);
-  $('#highScore-container').show(100);
-}
-
-let playBtn = $('#play-button');
-playBtn.click(() => {
-  $("#home-container").hide(100);
-  $("#game-container").show(100);
-  startTimer();
-  generateEquation();
-});
-
 
 function addTime() {
-  timerValue++;
-  timer.textContent = `Time left: ${timerValue}s`;
+  timerValue += 5;
+  timer.html(`Time left: ${timerValue}s`);
 }
 
 function getRandomNumber() {
   return Math.floor(Math.random() * 10) + 1;
+}
+// End game
+function endGame() {
+  clearInterval(timerInterval);
+  $('#game-container').hide(100);
+  $('#highScore-container').show(100);
 }
 
 function getRandomOperator() {
