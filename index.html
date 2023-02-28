@@ -16,39 +16,41 @@
   <!-- Possible extra feature could be multiple choice buttons.... Or a way to increase difficulty of the equations instead of the time -->
   <main id="main-container">
 
-    
+
     <!-- Home -->
     <div id="home-container">
       <h1>10 Seconds Math!</h1>
       <div id="buttons-wrapper">
         <button id="play-button">Play</button>
         <button id="settings-button">Settings</button>
+        <button id="highscore-button">High Scores</button>
       </div>
     </div>
 
     <!-- Game-->
     <div id="game-container">
-      <h2>Score</h2>
+      <h2 id="score-container">Score</h2>
       <h2>High Score</h2>
       <div id="timer">Time left: 10</div>
       <div id="equation"></div>
       <div id="user-input">
         <input type="text">
+        <button></button>
       </div>
     </div>
 
     <!-- HighScores -->
     <div id="highScore-container">
       <h2>High Scores!</h2>
-      <div class="highScore-list">
+      <div id="highScore-list">
 
       </div>
       <div>
         <h3>Save your score!</h3>
-        <input type="text" id="name">
+        <input id="name-input" type="text" id="name">
         <label for="name">Name:</label>
       </div>
-      <button id="save-button">Save</button>   
+      <button id="submit-button">Save</button>   
     </div>
 
 
