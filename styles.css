@@ -15,17 +15,9 @@ body {
   background-color: #f7f7f7;
 }
 
-#main-container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 h1 {
-  font-size: 4rem;
-  margin-bottom: 4rem;
+  font-size: 6rem;
+  margin-bottom: 3rem;
   color: #3f51b5;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -53,46 +45,73 @@ button:hover {
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-#play-button {
+#easy-button, #medium-button, #hard-button, #save-button {
   background-color: #3f51b5;
 }
 
-#settings-button {
+#save-button {
+  background-color: #3f51b5;
+}
+
+.home-button {
+  background-color: #4CAF50;
+}
+
+#main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+}
+
+#home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#home-container #buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#home-container #buttons-wrapper button {
+  background-color: #3f51b5;
+}
+#home-container #buttons-wrapper button:hover {
+  background-color: #32408f;
+}
+#home-container #buttons-wrapper #highScore-button {
   background-color: #f44336;
+}
+#home-container #buttons-wrapper #highScore-button:hover {
+  background-color: #ea1c0d;
 }
 
 #game-container {
-  max-width: 60rem;
-  margin-top: 4rem;
-  padding: 4rem;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 2rem;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
-#game-container h2 {
-  font-size: 3.2rem;
+#game-container #timer {
+  font-size: 6rem;
   margin-bottom: 2rem;
   color: #3f51b5;
 }
-#game-container #score-container {
-  font-size: 3.2rem;
-  margin-bottom: 2rem;
-  color: #f44336;
-}
-#game-container #timer {
-  font-size: 3.2rem;
-  margin-bottom: 2rem;
-  color: #f44336;
-}
 #game-container #equation {
-  font-size: 5rem;
+  font-size: 6rem;
   font-weight: bold;
   margin-bottom: 2rem;
 }
 #game-container #user-input {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 2rem;
 }
 #game-container #user-input input[type=text] {
@@ -106,56 +125,6 @@ button:hover {
   outline: none;
   box-shadow: 0 0 2px #3f51b5;
 }
-#game-container #user-input button {
-  font-size: 3.2rem;
-  background-color: #3f51b5;
-  color: #fff;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 1rem 2rem;
-  margin-left: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-#game-container #user-input button:hover {
-  transform: translateY(-2px);
-  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-#home-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-direction: column;
-  text-align: center;
-  height: 100vh;
-}
-#home-container h1 {
-  font-size: 6rem;
-  margin-bottom: 3rem;
-  color: #3f51b5;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-}
-#home-container #buttons-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-}
-#home-container #buttons-wrapper button {
-  background-color: #3f51b5;
-  margin-bottom: 1rem;
-}
-#home-container #buttons-wrapper button:hover {
-  background-color: #32408f;
-}
-#home-container #buttons-wrapper #highScore-button {
-  background-color: #f44336;
-}
-#home-container #buttons-wrapper #highScore-button:hover {
-  background-color: #ea1c0d;
-}
 
 #highScore-container {
   display: flex;
@@ -163,13 +132,6 @@ button:hover {
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  height: 100vh;
-}
-#highScore-container h1 {
-  font-size: 6em;
-  margin-bottom: 3rem;
-  color: #3f51b5;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 #highScore-container table {
   width: 100%;
@@ -191,35 +153,4 @@ button:hover {
   align-items: center;
   justify-content: center;
   margin-top: 2rem;
-}
-#highScore-container .buttons-wrapper button {
-  background-color: #3f51b5;
-  margin-bottom: 1rem;
-}
-#highScore-container .buttons-wrapper button:hover {
-  background-color: #32408f;
-}
-
-#easy-button {
-  background-color: #3f51b5;
-}
-
-#medium-button {
-  background-color: orange;
-}
-
-#hard-button {
-  background-color: #f44336;
-}
-
-.home-button {
-  background-color: #4CAF50;
-}
-
-#save-button {
-  background-color: #3f51b5;
-}
-
-#operator-buttons button {
-  background-color: #3f51b5;
 }/*# sourceMappingURL=styles.css.map */

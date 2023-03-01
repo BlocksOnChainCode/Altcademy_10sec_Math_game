@@ -13,10 +13,7 @@
   <title>10 Seconds Math Game</title>
 </head>
 <body>  
-  <!-- Possible extra feature could be multiple choice buttons.... Or a way to increase difficulty of the equations instead of the time -->
   <main id="main-container">
-
-
     <!-- Home -->
     <div id="home-container">
       <h1>10 Seconds Math!</h1>
@@ -26,16 +23,13 @@
         <button id="settings-button">Settings</button>
       </div>
     </div>
-
     <!-- Game-->
     <div id="game-container">
       <h2 id="score-container">Score</h2>
-      <h2>High Score</h2>
       <div id="timer">Time left: 10</div>
       <div id="equation"></div>
       <div id="user-input">
         <input type="text">
-        <button></button>
       </div>
     </div>
 
@@ -43,22 +37,9 @@
     <div id="highScore-container">
       <h2>High Scores!</h2>
       <div id="highScore-list">
-        <!--Table with name, score, mode, operator -->
         <table>
-          <tr>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Mode</th>
-            <th>Operator</th>
-          </tr>
-          <tr>
-            <td>John</td>
-            <td>100</td>
-            <td class="mode">Easy</td>
-            <td class="operator">+</td>
-          </tr>
+          <!-- Table with name, score, mode, -->
         </table>
-
       </div>
       <div>
         <h3>Save your score!</h3>
@@ -73,6 +54,7 @@
 
     <!-- Settings -->
     <div id="settings-container">
+      <h1>10 Seconds Math!</h1>
       <h2>Settings</h2>
       <div id="settings-wrapper">
         <div id="difficulty-wrapper">
@@ -81,15 +63,6 @@
             <button id="easy-button">Easy</button>
             <button id="medium-button">Medium</button>
             <button id="hard-button">Hard</button>
-          </div>
-        </div>
-        <div id="time-wrapper">
-          <h3>Choose a operator</h3>
-          <div id="operator-buttons">
-            <button id="addition-button">+</button>
-            <button id="subtraction-button">-</button>
-            <button id="multiplication-button">*</button>
-            <button id="division-button">/</button>
           </div>
         </div>
       </div>

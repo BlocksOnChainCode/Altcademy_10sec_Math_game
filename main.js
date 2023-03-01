@@ -1,21 +1,12 @@
-/**
- * ! :
- * ? :
- * TODO : 
- * 
- */
-
-
-
 $(document).ready(function() {
-
-  $('#medium').prop('checked', true);
 
   let score = 0;
   let timerValue = 10;
   let timerInterval;
-  const timer = $('#timer');
+  let mode = "normal";
   let name;
+  const timer = $('#timer');
+
   // Hide game container and highScore container
   $("#game-container").hide();
   $("#highScore-container").hide();
@@ -36,7 +27,7 @@ $(document).ready(function() {
     $("#game-container").hide(100);
     $("#settings-container").hide(100);
     $("#home-container").show(100);
-   
+    score = 0;
   });
   
   // when settings button is clicked
@@ -124,57 +115,21 @@ $(document).ready(function() {
     }
   }
 
-/*   $('#easy-button').click(function() {
-    console.log('easy button clicked');
-    $('#easy-button').prop('checked', true);
-    $('#medium-button').prop('checked', false);
-    $('#hard-button').prop('checked', false);
-    checkMode();
+  $('#easy-button').click(function() {
+    timerValue = 20;
     console.log(timerValue);
-  })
+    mode = "easy";
+  });
   $('#medium-button').click(function() {
-    console.log('medium button clicked');
-    $('#easy').prop('checked', false);
-    $('#medium').prop('checked', true);
-    $('#hard').prop('checked', false);
-    checkMode();
+    timerValue = 10;
     console.log(timerValue);
-  })
+    mode = "normal";
+  });
   $('#hard-button').click(function() {
-    console.log('hard button clicked');
-    $('#easy').prop('checked', false);
-    $('#medium').prop('checked', false);
-    $('#hard').prop('checked', true);
-    checkMode();
+    timerValue = 5;
     console.log(timerValue);
-  })
- */
-
-/*   // check mode
-  function checkMode() {
-    console.log('check mode');
-    if ($('#easy').is(':checked')) {
-      timerValue = 10;
-    } else if ($('#medium').is(':checked')) {
-      timerValue = 5;
-    } else if ($('#hard').is(':checked')) {
-      timerValue = 3;
-    }
-  }
-
-  // check operator
-  function checkOperator() {
-    if ($('#add').is(':checked')) {
-      operator = '+';
-    } else if ($('#subtract').is(':checked')) {
-      operator = '-';
-    } else if ($('#multiply').is(':checked')) {
-      operator = '*';
-    } else if ($('#divide').is(':checked')) {
-      operator = '/';
-    }
-  }
- */
+    mode = "hard";
+  });
 
 
   // Add time
@@ -193,18 +148,30 @@ $(document).ready(function() {
     return score;
   }
   
+  
+
+
   // End game
   function endGame() {
     clearInterval(timerInterval);
     $('#game-container').hide(100);
     $('#highScore-container').show(100);
+    $('#user-input input').val('');
+    $('#user-input input').blur();
+    $('#user-input input').attr('placeholder', 'Enter your name');
+    $('#user-input input').focus();
+    $('#user-input').on('keyup', function (event) {
+      if (event.keyCode === 13) {
+        saveScore();
+      }
+    });
     fetchHighScores();
   }
   
-  $('#save-btn').on('click', function () {
+/*   $('#save-btn').on('click', function () {
     checkAnswer();
   });
-  
+   */
   function fetchHighScores() {
     // Clear the high score list
     $('#highScore-list table').html(`
@@ -212,7 +179,6 @@ $(document).ready(function() {
         <th>Name</th>
         <th>Score</th>
         <th>Mode</th>
-        <th>Operator</th>
       </tr>
     `)    
 
@@ -228,10 +194,11 @@ $(document).ready(function() {
         
         // Extract scores from response and sort them in descending order
         var scores = response.tasks.map(function(task) {
-          var [name, score] = task.content.split(':');
+          var [name, score, mode] = task.content.split(':');
           return {
             name: name,
-            score: parseInt(score)
+            score: parseInt(score),
+            mode: mode
           };
         }).sort(function(a, b) {
           return b.score - a.score;
@@ -244,8 +211,7 @@ $(document).ready(function() {
             <tr>
               <td>${score.name}</td>
               <td>${score.score}</td>
-              <td class="mode">Easy</td>
-              <td class="operator">+</td>
+              <td class="mode">${score.mode}</td>
             </tr>
           `;
           $('#highScore-list table').append(highScoreHtml);
@@ -272,18 +238,18 @@ $(document).ready(function() {
           url: 'https://fewd-todolist-api.onrender.com/tasks?api_key=119',
           data: JSON.stringify({
             task: {
-              content: `${name + ":" + currentScore}`
+              content: `${name + ":" + currentScore + ":" + mode}`
             }
           }),
           contentType: 'application/json',
           success: function(response) {
             console.log(response);
+            fetchHighScores();
           },
           error: function(xhr, textStatus, errorThrown) {
             console.log('Error:', errorThrown);
           }
         });
-    fetchHighScores();
   });
   
 
@@ -294,10 +260,11 @@ $(document).ready(function() {
 
 
 
-// CLEAR THE ENTIRE SCOREBOARD
+//!!!! WIPE THE ENTIRE HIGHSCORE MEMORY !!!!!!!!
 /*
-resetHighScores();
+resetHighScores();  
 */
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function resetHighScores() {
   $.ajax({
     type: 'GET',
