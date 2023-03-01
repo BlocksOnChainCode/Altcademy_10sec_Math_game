@@ -8,6 +8,9 @@
 
 
 $(document).ready(function() {
+
+  $('#medium').prop('checked', true);
+
   let score = 0;
   let timerValue = 10;
   let timerInterval;
@@ -18,6 +21,8 @@ $(document).ready(function() {
   $("#highScore-container").hide();
   $("#settings-container").hide();
   
+  //check mode
+
   //when highScore button is clicked
   $('#highScore-button').click(() => {
     $("#home-container").hide(100);
@@ -31,7 +36,7 @@ $(document).ready(function() {
     $("#game-container").hide(100);
     $("#settings-container").hide(100);
     $("#home-container").show(100);
-    timerValue = 10;
+   
   });
   
   // when settings button is clicked
@@ -44,6 +49,7 @@ $(document).ready(function() {
   $('#play-button').click(() => {
     $("#home-container").hide(100);
     $("#game-container").show(100);
+    
     startTimer();
     generateEquation();
   });
@@ -117,7 +123,60 @@ $(document).ready(function() {
       $('#user-input input').val('');
     }
   }
-  
+
+/*   $('#easy-button').click(function() {
+    console.log('easy button clicked');
+    $('#easy-button').prop('checked', true);
+    $('#medium-button').prop('checked', false);
+    $('#hard-button').prop('checked', false);
+    checkMode();
+    console.log(timerValue);
+  })
+  $('#medium-button').click(function() {
+    console.log('medium button clicked');
+    $('#easy').prop('checked', false);
+    $('#medium').prop('checked', true);
+    $('#hard').prop('checked', false);
+    checkMode();
+    console.log(timerValue);
+  })
+  $('#hard-button').click(function() {
+    console.log('hard button clicked');
+    $('#easy').prop('checked', false);
+    $('#medium').prop('checked', false);
+    $('#hard').prop('checked', true);
+    checkMode();
+    console.log(timerValue);
+  })
+ */
+
+/*   // check mode
+  function checkMode() {
+    console.log('check mode');
+    if ($('#easy').is(':checked')) {
+      timerValue = 10;
+    } else if ($('#medium').is(':checked')) {
+      timerValue = 5;
+    } else if ($('#hard').is(':checked')) {
+      timerValue = 3;
+    }
+  }
+
+  // check operator
+  function checkOperator() {
+    if ($('#add').is(':checked')) {
+      operator = '+';
+    } else if ($('#subtract').is(':checked')) {
+      operator = '-';
+    } else if ($('#multiply').is(':checked')) {
+      operator = '*';
+    } else if ($('#divide').is(':checked')) {
+      operator = '/';
+    }
+  }
+ */
+
+
   // Add time
   function addTime() {
     timerValue += 1;
@@ -139,6 +198,7 @@ $(document).ready(function() {
     clearInterval(timerInterval);
     $('#game-container').hide(100);
     $('#highScore-container').show(100);
+    fetchHighScores();
   }
   
   $('#save-btn').on('click', function () {
