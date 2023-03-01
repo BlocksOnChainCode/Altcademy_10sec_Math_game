@@ -15,20 +15,29 @@ body {
   background-color: #f7f7f7;
 }
 
-main {
+#main-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-main h1 {
+
+h1 {
   font-size: 4rem;
   margin-bottom: 4rem;
   color: #3f51b5;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-main button {
+
+h2 {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+  color: #3f51b5;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+button {
   font-size: 2.4rem;
   padding: 1.6rem 3.2rem;
   border: none;
@@ -39,17 +48,20 @@ main button {
   transition: all 0.2s ease-in-out;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-main button:hover {
+button:hover {
   transform: translateY(-2px);
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
 }
-main #play-button {
+
+#play-button {
   background-color: #3f51b5;
 }
-main #settings-button {
+
+#settings-button {
   background-color: #f44336;
 }
-main #game-container {
+
+#game-container {
   max-width: 60rem;
   margin-top: 4rem;
   padding: 4rem;
@@ -58,44 +70,152 @@ main #game-container {
   border-radius: 2rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
-main #game-container h2 {
+#game-container h2 {
   font-size: 3.2rem;
   margin-bottom: 2rem;
   color: #3f51b5;
 }
-main #game-container #timer {
+#game-container #score-container {
   font-size: 3.2rem;
   margin-bottom: 2rem;
   color: #f44336;
 }
-main #game-container #equation {
+#game-container #timer {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+  color: #f44336;
+}
+#game-container #equation {
   font-size: 5rem;
+  font-weight: bold;
   margin-bottom: 2rem;
-  color: #3f51b5;
 }
-main #game-container #user-input input {
-  font-size: 3.2rem;
-  padding: 1.2rem;
-  border: none;
-  border-bottom: 2px solid #ddd;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: #3f51b5;
-  transition: border-bottom-color 0.2s ease-in-out;
-}
-main #game-container #user-input input:focus {
-  outline: none;
-  border-bottom-color: #3f51b5;
-}
-main #game-container #score-container {
+#game-container #user-input {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
 }
-main #game-container #score {
+#game-container #user-input input[type=text] {
   font-size: 3.2rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  flex-grow: 1;
+}
+#game-container #user-input input[type=text]:focus {
+  outline: none;
+  box-shadow: 0 0 2px #3f51b5;
+}
+#game-container #user-input button {
+  font-size: 3.2rem;
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+#game-container #user-input button:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+}
+#home-container h1 {
+  font-size: 6rem;
+  margin-bottom: 3rem;
   color: #3f51b5;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-main #game-container #high-score {
-  font-size: 3.2rem;
-  color: #f44336;
+#home-container #buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+#home-container #buttons-wrapper button {
+  background-color: #3f51b5;
+  margin-bottom: 1rem;
+}
+#home-container #buttons-wrapper button:hover {
+  background-color: #32408f;
+}
+#home-container #buttons-wrapper #highScore-button {
+  background-color: #f44336;
+}
+#home-container #buttons-wrapper #highScore-button:hover {
+  background-color: #ea1c0d;
+}
+
+#highScore-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+}
+#highScore-container h1 {
+  font-size: 6em;
+  margin-bottom: 3rem;
+  color: #3f51b5;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+#highScore-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+#highScore-container table th {
+  font-size: 2.4rem;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+#highScore-container table td {
+  font-size: 2rem;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+#highScore-container .buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+#highScore-container .buttons-wrapper button {
+  background-color: #3f51b5;
+  margin-bottom: 1rem;
+}
+#highScore-container .buttons-wrapper button:hover {
+  background-color: #32408f;
+}
+
+#easy-button {
+  background-color: #3f51b5;
+}
+
+#medium-button {
+  background-color: orange;
+}
+
+#hard-button {
+  background-color: #f44336;
+}
+
+.home-button {
+  background-color: #4CAF50;
+}
+
+#save-button {
+  background-color: #3f51b5;
 }/*# sourceMappingURL=styles.css.map */
