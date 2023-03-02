@@ -3,7 +3,7 @@ $(document).ready(function() {
   let score = 0;
   let timerValue = 10;
   let timerInterval;
-  let mode = "normal";
+  let mode = "Normal";
   let name;
   const timer = $('#timer');
   let scoreSpamBlocker = false;
@@ -60,7 +60,7 @@ $(document).ready(function() {
       } else {
         //console.log(timerValue)
         timerValue--;
-        timer.html(`${timerValue}`).fadeIn();
+        timer.html(`${timerValue}`);
       }
     }, 1000);
     $('#user-input input').focus();
@@ -122,19 +122,19 @@ $(document).ready(function() {
   $('#easy-button').click(function() {
     timerValue = 20;
     console.log(timerValue);
-    mode = "easy";
+    mode = "Easy";
     $('#difficulty').html(`Difficulty: ${mode}`);
   });
   $('#medium-button').click(function() {
     timerValue = 10;
     console.log(timerValue);
-    mode = "normal";
+    mode = "Normal";
     $('#difficulty').html(`Difficulty: ${mode}`);
   });
   $('#hard-button').click(function() {
     timerValue = 5;
     console.log(timerValue);
-    mode = "hard";
+    mode = "Hard";
     $('#difficulty').html(`Difficulty: ${mode}`);
   });
 
@@ -155,11 +155,11 @@ $(document).ready(function() {
   
   // check mode
   function checkMode() {
-    if (mode === "easy") {
+    if (mode === "Easy") {
       timerValue = 20;
-    } else if (mode === "normal") {
+    } else if (mode === "Normal") {
       timerValue = 10;
-    } else if (mode === "hard") {
+    } else if (mode === "Hard") {
       timerValue = 5;
     }
   }
