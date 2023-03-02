@@ -29,10 +29,9 @@
       <div id="timer">Time left: 10</div>
       <div id="equation"></div>
       <div id="user-input">
-        <input type="text">
+        <input type="text" placeholder="Answer:">
       </div>
     </div>
-
     <!-- HighScores -->
     <div id="highScore-container">
       <h2>High Scores!</h2>
@@ -41,17 +40,17 @@
           <!-- Table with name, score, mode, -->
         </table>
       </div>
-      <div>
+      <button id="home-hidden" class="home-button">Home</button>
+      <div id="save-score">
         <h3>Save your score!</h3>
-        <input id="name-input" type="text" id="name">
+        <input id="name-input" type="text" id="name" placeholder="Enter you Username">
         <label for="name">Name:</label>
-      </div>
-      <div class="buttons-wrapper">
-        <button id="save-button">Save</button> 
-        <button class="home-button">Home</button>"  
+        <div class="buttons-wrapper">
+          <button id="save-button">Save</button>
+          <button class="home-button">Home</button>"  
+        </div>
       </div>
     </div>
-
     <!-- Settings -->
     <div id="settings-container">
       <h1>10 Seconds Math!</h1>
@@ -69,11 +68,6 @@
       <button class="home-button">Home</button>
     </div>
   </main>
-
-  <footer>
-
-  </footer>
-
   <script src="./main.js"></script>
   <script src="./highscore.js"></script>
 </body>

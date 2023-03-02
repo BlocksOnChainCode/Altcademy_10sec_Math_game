@@ -157,6 +157,9 @@ button {
     @include flex-center-row();
     margin-top: 2rem;
   }
+  #save-score {
+    @include flex-center-col();
+  }
 }
 
 
