@@ -15,20 +15,26 @@ body {
   background-color: #f7f7f7;
 }
 
-h1 {
+h1, h2 {
   font-size: 6rem;
   margin-bottom: 3rem;
   color: #3f51b5;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
-  font-size: 3.2rem;
+h3 {
+  font-size: 4rem;
   margin-bottom: 2rem;
   color: #3f51b5;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+/* h2 {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+  color: $primary-color;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+} */
 button {
   font-size: 2.4rem;
   padding: 1.6rem 3.2rem;
@@ -45,15 +51,16 @@ button:hover {
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-#easy-button, #medium-button, #hard-button, #save-button {
+#easy-button, #medium-button, #hard-button {
   background-color: #3f51b5;
+  margin-bottom: 2rem;
 }
 
 #save-button {
-  background-color: #3f51b5;
+  background-color: #f44336;
 }
 
-.home-button {
+.home-button, .play-button {
   background-color: #4CAF50;
 }
 
@@ -147,6 +154,17 @@ button:hover {
   font-size: 2rem;
   padding: 1rem;
   border-bottom: 1px solid #ddd;
+}
+#highScore-container input[type=text] {
+  font-size: 3.2rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  flex-grow: 1;
+}
+#highScore-container input[type=text]:focus {
+  outline: none;
+  box-shadow: 0 0 2px #3f51b5;
 }
 #highScore-container .buttons-wrapper {
   display: flex;

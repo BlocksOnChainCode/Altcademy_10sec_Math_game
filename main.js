@@ -9,13 +9,11 @@ $(document).ready(function() {
   let scoreSpamBlocker = false;
 
 
-  // Hide game container and highScore container
+  // Hide containers
   $("#game-container").hide();
   $("#highScore-container").hide();
   $("#settings-container").hide();
   
-  //check mode
-
   //when highScore button is clicked
   $('#highScore-button').click(() => {
     $("#home-container").hide(100);
@@ -42,10 +40,11 @@ $(document).ready(function() {
   });
   
   // When play button is clicked
-  $('#play-button').click(() => {
-    $("#home-container").hide(100);
+  $('.play-button').click(() => {
+    $("#home-container").hide();
+    $('#settings-container').hide();
     $("#game-container").show(100);
-    
+    $('#timer').html(timerValue);
     startTimer();
     generateEquation();
   });
@@ -61,7 +60,7 @@ $(document).ready(function() {
       } else {
         //console.log(timerValue)
         timerValue--;
-        timer.html(`Time left: ${timerValue}s`);
+        timer.html(`${timerValue}`).fadeIn();
       }
     }, 1000);
     $('#user-input input').focus();
@@ -124,37 +123,36 @@ $(document).ready(function() {
     timerValue = 20;
     console.log(timerValue);
     mode = "easy";
+    $('#difficulty').html(`Difficulty: ${mode}`);
   });
   $('#medium-button').click(function() {
     timerValue = 10;
     console.log(timerValue);
     mode = "normal";
+    $('#difficulty').html(`Difficulty: ${mode}`);
   });
   $('#hard-button').click(function() {
     timerValue = 5;
     console.log(timerValue);
     mode = "hard";
+    $('#difficulty').html(`Difficulty: ${mode}`);
   });
-
 
   // Add time
   function addTime() {
     timerValue += 1;
-    timer.html(`Time left: ${timerValue}s`);
+    timer.html(`${timerValue}`);
     calculateScore();
   }
   
   function calculateScore() {
     score += timerValue * 5;
     console.log(score);
-  
     // Display score
     $('#score-container').text(`Score: ${score}`);
     return score;
   }
   
-  
-
   // check mode
   function checkMode() {
     if (mode === "easy") {
@@ -175,17 +173,12 @@ $(document).ready(function() {
     $('#home-hidden').hide();
     $('#user-input input').val('');
     $('#user-input input').blur();
-    $('#name-input input').attr('placeholder', 'Enter your name');
     $('#user-input input').focus();
     $('#name-input input').focus();
     checkMode();
-    timer.html(`Time left: ${timerValue}s`);
-    
-  
-    fetchHighScores();
+    timer.html(`${timerValue}`);
   }
   
-
   function fetchHighScores() {
     // Clear the high score list
     $('#highScore-list table').html(`
@@ -195,7 +188,6 @@ $(document).ready(function() {
         <th>Mode</th>
       </tr>
     `)    
-
 
     // Fetch the high scores from the API
     $.ajax({
@@ -218,8 +210,8 @@ $(document).ready(function() {
           return b.score - a.score;
         });
         
-        // Generate HTML for the top 20 high scores
-        for (var i = 0; i < 15 && i < scores.length; i++) {
+        // Generate HTML for the top 10 high scores
+        for (var i = 0; i < 10 && i < scores.length; i++) {
           var score = scores[i];
           var highScoreHtml = `
             <tr>
@@ -236,8 +228,6 @@ $(document).ready(function() {
         console.log('Error:', errorThrown);
       }
     });
-    
-    
   }
 
   // When the submit button is clicked
@@ -266,15 +256,8 @@ $(document).ready(function() {
       });
     }
     scoreSpamBlocker = true;
-
-    // Send the highscore to the API
   });
-  
-  //fetchHighScores();
 }); 
-
-
-
 
 
 //!!!! WIPE THE ENTIRE HIGHSCORE MEMORY !!!!!!!!
@@ -287,7 +270,7 @@ function resetHighScores() {
     type: 'GET',
     url: 'https://fewd-todolist-api.onrender.com/tasks?api_key=119',
     dataType: 'json',
-  
+
     success: function (response, _textStatus) {
       console.log(response);
       
@@ -306,10 +289,9 @@ function resetHighScores() {
         });
       }
     },
-  
+
     error: function (_xhr, _textStatus, errorThrown) {
       console.log('Error:', errorThrown);
     }
   });
-  
 }

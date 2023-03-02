@@ -18,7 +18,7 @@
     <div id="home-container">
       <h1>10 Seconds Math!</h1>
       <div id="buttons-wrapper">
-        <button id="play-button">Play</button>
+        <button class="play-button">Play</button>
         <button id="highScore-button">High Scores</button>
         <button id="settings-button">Settings</button>
       </div>
@@ -42,9 +42,7 @@
       </div>
       <button id="home-hidden" class="home-button">Home</button>
       <div id="save-score">
-        <h3>Save your score!</h3>
-        <input id="name-input" type="text" id="name" placeholder="Enter you Username">
-        <label for="name">Name:</label>
+        <input id="name-input" type="text" id="name" placeholder="Username:">
         <div class="buttons-wrapper">
           <button id="save-button">Save</button>
           <button class="home-button">Home</button>"  
@@ -53,11 +51,10 @@
     </div>
     <!-- Settings -->
     <div id="settings-container">
-      <h1>10 Seconds Math!</h1>
       <h2>Settings</h2>
       <div id="settings-wrapper">
         <div id="difficulty-wrapper">
-          <h3>Difficulty</h3>
+          <h3 id="difficulty">Difficulty: Medium</h3>
           <div id="difficulty-buttons">
             <button id="easy-button">Easy</button>
             <button id="medium-button">Medium</button>
@@ -66,6 +63,7 @@
         </div>
       </div>
       <button class="home-button">Home</button>
+      <button class="play-button">Play</button>
     </div>
   </main>
   <script src="./main.js"></script>

@@ -40,19 +40,25 @@ body {
   background-color: $background-color;
 }
 
-h1 {
+h1, h2 {
   font-size: 6rem;
   margin-bottom: 3rem;
   color: $primary-color;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
-  font-size: 3.2rem;
+h3 {
+  font-size: 4rem;
   margin-bottom: 2rem;
   color: $primary-color;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
+/* h2 {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+  color: $primary-color;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+} */
 
 button {
   font-size: 2.4rem;
@@ -71,14 +77,16 @@ button {
   }
 }
 
-#easy-button, #medium-button, #hard-button, #save-button {
+#easy-button, #medium-button, #hard-button {
   background-color: $primary-color;
-}
-#save-button {
-  background-color: $primary-color;
+  margin-bottom: 2rem;
 }
 
-.home-button {
+#save-button {
+  background-color: $secondary-color;
+}
+
+.home-button, .play-button {
   background-color: $home-button-color;
 }
 
@@ -151,6 +159,17 @@ button {
       font-size: 2rem;
       padding: 1rem;
       border-bottom: 1px solid $border-color;
+    }
+  }
+  input[type="text"] {
+    font-size: 3.2rem;
+    padding: 1rem;
+    border: 1px solid $border-color;
+    border-radius: 0.5rem;
+    flex-grow: 1;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px $primary-color;
     }
   }
   .buttons-wrapper {
