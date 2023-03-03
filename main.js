@@ -1,13 +1,11 @@
 $(document).ready(function() {
 
-  let score = 0;
+  const timer = $('#timer');
   let timerValue = 10;
   let timerInterval;
+  let score = 0;
   let mode = "Normal";
-  let name;
-  const timer = $('#timer');
   let scoreSpamBlocker = false;
-
 
   // Hide containers
   $("#game-container").hide();
@@ -16,6 +14,7 @@ $(document).ready(function() {
   
   //when highScore button is clicked
   $('#highScore-button').click(() => {
+    console.log('highScore button clicked --> Showing high scores')
     $("#home-container").hide(100);
     $("#highScore-container").show(100);
     $('#save-score').hide();
@@ -25,6 +24,7 @@ $(document).ready(function() {
   
   //when home button is clicked
   $('.home-button').click(() => {
+    console.log('home button clicked --> Showing home page')
     $("#highScore-container").hide(100);
     $("#game-container").hide(100);
     $("#settings-container").hide(100);
@@ -35,12 +35,14 @@ $(document).ready(function() {
   
   // when settings button is clicked
   $('#settings-button').click(() => {
+    console.log('settings button clicked --> Showing settings page')
     $("#home-container").hide(100);
     $("#settings-container").show(100);
   });
   
   // When play button is clicked
   $('.play-button').click(() => {
+    console.log('play button clicked --> Showing game page')
     $("#home-container").hide();
     $('#settings-container').hide();
     $("#game-container").show(100);
@@ -121,25 +123,26 @@ $(document).ready(function() {
 
   $('#easy-button').click(function() {
     timerValue = 20;
-    console.log(timerValue);
+    console.log(`Easy mode: ${timerValue}'s`);
     mode = "Easy";
     $('#difficulty').html(`Difficulty: ${mode}`);
   });
   $('#medium-button').click(function() {
     timerValue = 10;
-    console.log(timerValue);
+    console.log(`Normal mode: ${timerValue}'s`)
     mode = "Normal";
     $('#difficulty').html(`Difficulty: ${mode}`);
   });
   $('#hard-button').click(function() {
     timerValue = 5;
-    console.log(timerValue);
+    console.log(`Hard mode: ${timerValue}'s`)
     mode = "Hard";
     $('#difficulty').html(`Difficulty: ${mode}`);
   });
 
   // Add time
   function addTime() {
+    console.log('time added')
     timerValue += 1;
     timer.html(`${timerValue}`);
     calculateScore();
@@ -147,7 +150,7 @@ $(document).ready(function() {
   
   function calculateScore() {
     score += timerValue * 5;
-    console.log(score);
+    //console.log(score);
     // Display score
     $('#score-container').text(`Score: ${score}`);
     return score;
@@ -166,6 +169,7 @@ $(document).ready(function() {
 
   // End game
   function endGame() {
+    console.log('game ended --> Showing highscore prompt')
     clearInterval(timerInterval);
     $('#game-container').hide(100);
     $('#highScore-container').show(100);
@@ -178,58 +182,6 @@ $(document).ready(function() {
     checkMode();
     timer.html(`${timerValue}`);
   }
-  
-  function fetchHighScores() {
-    // Clear the high score list
-    $('#highScore-list table').html(`
-      <tr>
-        <th>Name</th>
-        <th>Score</th>
-        <th>Mode</th>
-      </tr>
-    `)    
-
-    // Fetch the high scores from the API
-    $.ajax({
-      type: 'GET',
-      url: 'https://fewd-todolist-api.onrender.com/tasks?api_key=119',
-      dataType: 'json',
-    
-      success: function (response, _textStatus) {
-        console.log(response);
-        
-        // Extract scores from response and sort them in descending order
-        var scores = response.tasks.map(function(task) {
-          var [name, score, mode] = task.content.split(':');
-          return {
-            name: name,
-            score: parseInt(score),
-            mode: mode
-          };
-        }).sort(function(a, b) {
-          return b.score - a.score;
-        });
-        
-        // Generate HTML for the top 10 high scores
-        for (var i = 0; i < 10 && i < scores.length; i++) {
-          var score = scores[i];
-          var highScoreHtml = `
-            <tr>
-              <td>${score.name}</td>
-              <td>${score.score}</td>
-              <td class="mode">${score.mode}</td>
-            </tr>
-          `;
-          $('#highScore-list table').append(highScoreHtml);
-        }
-      },
-    
-      error: function (_xhr, _textStatus, errorThrown) {
-        console.log('Error:', errorThrown);
-      }
-    });
-  }
-
   // When the submit button is clicked
   $('#save-button').click(function(event) {
     event.preventDefault();
@@ -242,9 +194,9 @@ $(document).ready(function() {
         url: 'https://fewd-todolist-api.onrender.com/tasks?api_key=119',
         data: JSON.stringify({
           task: {
-            content: `${name + ":" + currentScore + ":" + mode}`
-          }
-        }),
+            content: `{"name": "${name}", "currentScore": "${currentScore}", "mode": "${mode}"}`
+            }
+          }), 
         contentType: 'application/json',
         success: function(response) {
           console.log(response);
@@ -256,7 +208,63 @@ $(document).ready(function() {
       });
     }
     scoreSpamBlocker = true;
+    $('#save-score').hide();
+    $('#home-hidden').show();
+    console.log(`HIGHSCORE SAVED - Score: ${score}`);
   });
+  
+  function fetchHighScores() {
+    // Clear the high score list
+    $('#highScore-list').html('');
+
+    // Fetch the high scores from the API
+    $.ajax({
+      type: 'GET',
+      url: 'https://fewd-todolist-api.onrender.com/tasks?api_key=119',
+      dataType: 'json',
+    
+      success: function (response, _textStatus) {
+        console.log(response);
+        
+        // Sort High Scores
+        var sortedTasks = response.tasks.sort(function(a, b) {
+          var taskA = JSON.parse(a.content);
+          var taskB = JSON.parse(b.content);
+          return taskB.currentScore - taskA.currentScore;
+        }
+        );
+
+        // Create and append HighSCore items
+        // only the top 10 show
+        for (var i = 0; i < 10 && i < sortedTasks.length; i++) {
+          var task = sortedTasks[i];
+              //console.log(`HIGHSCORE BEFORE PARSE`);
+              //console.log(task);
+          var taskContent = JSON.parse(task.content);
+              //console.log(`HIGHSCORE.CONTENT AFTER PARSE`);
+              //console.log(taskContent);
+          var taskName = taskContent.name;
+          var taskScore = taskContent.currentScore;
+          var taskMode = taskContent.mode;
+          var taskID = task.id;
+          var taskHTML = `
+            <tr class="highScore-item">
+              <td class="highScore-name">${taskName}</td>
+              <td class="highScore-score">${taskScore}</td>
+              <td class="highScore-mode">${taskMode}</td>
+            </tr>
+          `;
+          $('#highScore-list').append(taskHTML);
+        }
+      },
+    
+      error: function (_xhr, _textStatus, errorThrown) {
+        console.log('Error:', errorThrown);
+      }
+    });
+    console.log(`HIGHSCORES FETCHED`);
+  }
+
 }); 
 
 
